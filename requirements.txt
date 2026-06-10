@@ -1,0 +1,3 @@
+# RAGShield MVP intentionally uses only the Python standard library.
+# Python 3.11+ recommended; validated here with Python 3.12.
+

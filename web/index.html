@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAGShield Demo Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="/assets/ragshield-mark.svg" alt="" width="42" height="42">
+      <div>
+        <strong>RAGShield</strong>
+        <span>RAG / Agent Security</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#overview">Overview</a>
+      <a href="#replay">Attack Replay</a>
+      <a href="#knowledge">Knowledge Scan</a>
+      <a href="#tools">Tool Audit</a>
+      <a href="#reports">Reports</a>
+    </nav>
+    <div class="side-status">
+      <span class="status-dot"></span>
+      <span id="serverStatus">Local demo API</span>
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Enterprise AI Security Prototype</p>
+        <h1>RAGShield Demo Dashboard</h1>
+      </div>
+      <div class="actions">
+        <button id="rerunBtn" class="button primary" type="button">Run Validation</button>
+        <a class="button" href="/reports/final_validation.html" target="_blank" rel="noreferrer">HTML Report</a>
+      </div>
+    </header>
+
+    <section id="overview" class="section hero-grid">
+      <div class="risk-panel">
+        <div class="risk-meter" aria-label="Overall risk score">
+          <svg viewBox="0 0 140 140" role="img">
+            <circle cx="70" cy="70" r="58" class="meter-bg"></circle>
+            <circle id="riskArc" cx="70" cy="70" r="58" class="meter-value"></circle>
+          </svg>
+          <div>
+            <strong id="riskScore">--</strong>
+            <span id="riskLevel">loading</span>
+          </div>
+        </div>
+        <div>
+          <h2>Pre-production Security Gate</h2>
+          <p>Northstar Retail policy assistant, poisoned knowledge base, deterministic attack replay, defense simulator, tool approval audit.</p>
+        </div>
+      </div>
+      <div class="metric-grid" id="metricGrid"></div>
+    </section>
+
+    <section class="section split">
+      <div class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">Benchmark</p>
+          <h2>Public Dataset Detector Metrics</h2>
+        </div>
+        <div class="bar-list" id="benchmarkBars"></div>
+      </div>
+      <div class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">Risk Reduction</p>
+          <h2>Attack Success Rate</h2>
+        </div>
+        <div class="compare-chart" id="asrChart"></div>
+      </div>
+    </section>
+
+    <section id="replay" class="section panel">
+      <div class="section-heading row">
+        <div>
+          <p class="eyebrow">Red Team</p>
+          <h2>Attack Replay</h2>
+        </div>
+        <div class="segmented" role="group" aria-label="Defense mode">
+          <button id="defenseOff" class="active" type="button">Defense Off</button>
+          <button id="defenseOn" type="button">Defense On</button>
+        </div>
+      </div>
+      <div class="attack-layout">
+        <div class="attack-list" id="attackList"></div>
+        <div class="replay-output">
+          <div class="output-head">
+            <div>
+              <strong id="attackTitle">Select attack</strong>
+              <span id="attackMeta"></span>
+            </div>
+            <span id="attackBadge" class="badge">idle</span>
+          </div>
+          <div class="prompt-block">
+            <label>User Query</label>
+            <pre id="userQuery"></pre>
+          </div>
+          <div class="prompt-block">
+            <label>Injected Retrieved Content</label>
+            <pre id="maliciousDoc"></pre>
+          </div>
+          <div class="prompt-block">
+            <label>Model Output</label>
+            <pre id="modelOutput"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="knowledge" class="section panel">
+      <div class="section-heading row">
+        <div>
+          <p class="eyebrow">Knowledge Base</p>
+          <h2>Poisoning Exposure</h2>
+        </div>
+        <div class="mini-stats" id="scanStats"></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Query</th>
+              <th>Rank</th>
+              <th>Document</th>
+              <th>Risk</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody id="knowledgeRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tools" class="section split">
+      <div class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">Agent / MCP</p>
+          <h2>Tool Approval Audit</h2>
+        </div>
+        <div id="toolList" class="tool-list"></div>
+      </div>
+      <div class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">Open-weight Judge</p>
+          <h2>Local LLM Validation</h2>
+        </div>
+        <div id="llmValidation" class="llm-box"></div>
+      </div>
+    </section>
+
+    <section id="reports" class="section panel">
+      <div class="section-heading row">
+        <div>
+          <p class="eyebrow">Evidence</p>
+          <h2>Generated Artifacts</h2>
+        </div>
+      </div>
+      <div class="artifact-grid">
+        <a href="/reports/final_validation.json" target="_blank" rel="noreferrer">JSON Evidence</a>
+        <a href="/reports/final_validation.md" target="_blank" rel="noreferrer">Markdown Report</a>
+        <a href="/reports/final_validation.html" target="_blank" rel="noreferrer">HTML Report</a>
+        <a href="/reports/llm_validation.json" target="_blank" rel="noreferrer">LLM Judge Output</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
